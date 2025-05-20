@@ -1,0 +1,32 @@
+{
+  "avatar": "avatar.jpg",
+  "title": "Hiromi",
+  "bio": "写真とコーヒーとAI",
+  "links": [
+    {
+      "label": "Instagram",
+      "url": "https://instagram.com/hiromi.suzuki_",
+      "emoji": "📸"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/shiromi_09",
+      "emoji": "🧑‍🦽"
+    },
+    {
+      "label": "X ",
+      "url": "https://x.com/hiromi04459366",
+      "emoji": "🐦"
+    },
+    {
+      "label": "Threads",
+      "url": "https://www.threads.com/@hiromi.suzuki_",
+      "emoji": "＠"
+    },
+    {
+      "label": "note",
+      "url": "https://note.com/hiromi381",
+      "emoji": "🗒️"
+    }
+  ]
+}

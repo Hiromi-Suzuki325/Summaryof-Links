@@ -7,6 +7,17 @@ async function init() {
   document.getElementById("title").textContent = data.title || "";
   document.getElementById("bio").textContent = data.bio || "";
 
+  // ドメイン → Simple Icons スラッグ
+  const BRAND_ICONS = {
+    "instagram.com": "instagram",
+    "x.com": "x",
+    "twitter.com": "x",
+    "threads.com": "threads",
+    "threads.net": "threads",
+    "note.com": "note",
+    "suno.com": "suno",
+  };
+
   // リンクボタン生成
   const container = document.getElementById("links");
   data.links.forEach(({ label, url, emoji }) => {
@@ -15,7 +26,26 @@ async function init() {
     a.className = "link-btn";
     a.target = "_blank";
     a.rel = "noopener";
-    a.textContent = `${emoji ? emoji + " " : ""}${label}`;
+
+    const host = new URL(url).hostname.replace(/^www\./, "");
+    const slug = BRAND_ICONS[host];
+    if (slug) {
+      const icon = document.createElement("span");
+      icon.className = "icon";
+      icon.style.setProperty("--icon", `url("icons/${slug}.svg")`);
+      a.appendChild(icon);
+    } else if (emoji) {
+      const icon = document.createElement("span");
+      icon.className = "icon-emoji";
+      icon.textContent = emoji;
+      a.appendChild(icon);
+    }
+
+    const text = document.createElement("span");
+    text.className = "label";
+    text.textContent = label;
+    a.appendChild(text);
+
     container.appendChild(a);
   });
 

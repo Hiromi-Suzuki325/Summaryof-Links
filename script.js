@@ -1,5 +1,5 @@
 async function init() {
-  const res = await fetch("links.json");
+  const res = await fetch("links.json", { cache: "no-store" });
   const data = await res.json();
 
   // プロフィール部分

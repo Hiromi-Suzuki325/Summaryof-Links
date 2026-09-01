@@ -2,16 +2,17 @@
    Hiromi's LinkHub — quiet, warm, coffee-toned
    ============================================ */
 :root {
-  color-scheme: light dark;
+  /* ライトモード固定（ダークテーマは提供しない） */
+  color-scheme: only light;
 
   /* palette: warm neutral × coffee accent */
-  --bg: light-dark(#f6f3ee, #171410);
-  --bg-tint: light-dark(#ede5d8, #221c14);
-  --surface: light-dark(#fffefb, #211d17);
-  --text: light-dark(#2b2620, #ece5da);
-  --muted: light-dark(#7a7062, #a49a8b);
-  --border: light-dark(#e5ded2, #3a3329);
-  --accent: light-dark(#8a5a3b, #d8a97e);
+  --bg: #f6f3ee;
+  --bg-tint: #ede5d8;
+  --surface: #fffefb;
+  --text: #2b2620;
+  --muted: #7a7062;
+  --border: #e5ded2;
+  --accent: #8a5a3b;
 
   accent-color: var(--accent);
 }

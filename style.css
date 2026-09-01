@@ -69,6 +69,114 @@ header {
   color: var(--muted);
 }
 
+/* bio下のアイコン行（アイコンだけで通じるSNS） */
+#icon-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 1.1rem;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+.icon-link .icon {
+  position: static;
+  width: 20px;
+  height: 20px;
+  background-color: var(--muted);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.icon-link:hover {
+  border-color: var(--accent);
+}
+.icon-link:hover .icon {
+  background-color: var(--accent);
+}
+.icon-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* スプリットボタン（1カードに複数リンク）
+   アイコンは中央の仕切り上に載せるメダリオン */
+.link-btn.split {
+  padding: 0;
+}
+
+.link-btn.split .icon-medallion {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.link-btn.split .icon-medallion .icon {
+  position: static;
+  width: 18px;
+  height: 18px;
+}
+
+.link-btn.split:hover .icon-medallion {
+  border-color: var(--accent);
+}
+.link-btn.split:hover .icon-medallion .icon {
+  background-color: var(--accent);
+}
+
+.split-seg {
+  flex: 1;
+  padding: 1rem 0.5rem;
+  border-radius: 14px;
+  text-align: center;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.split-seg:first-of-type {
+  border-radius: 14px 0 0 14px;
+  padding-right: 1.6rem;
+}
+.split-seg:last-of-type {
+  border-radius: 0 14px 14px 0;
+  padding-left: 1.6rem;
+}
+.split-seg + .split-seg {
+  border-left: 1px solid var(--border);
+}
+
+.split-seg:hover {
+  color: var(--accent);
+  background: var(--bg-tint);
+}
+
+.split-seg:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
 #links {
   display: flex;
   flex-direction: column;

@@ -1,37 +1,38 @@
 {
   "avatar": "avatar.jpg",
   "title": "Hiromi",
-  "bio": "写真とコーヒーとAI",
-  "links": [
+  "bio": "写真とかコーヒーとか",
+  "iconLinks": [
     {
-      "label": "Instagram (Photo)",
-      "url": "https://instagram.com/hiromi.suzuki_",
-      "emoji": "📸"
-    },
-    {
-      "label": "Instagram (Life)",
-      "url": "https://www.instagram.com/shiromi_09",
-      "emoji": "🧑‍🦽"
-    },
-    {
-      "label": "X ",
-      "url": "https://x.com/hiromi04459366",
-      "emoji": "🐦"
+      "label": "X",
+      "url": "https://x.com/hiromi04459366"
     },
     {
       "label": "Threads",
-      "url": "https://www.threads.com/@hiromi.suzuki_",
-      "emoji": "＠"
+      "url": "https://www.threads.com/@hiromi.suzuki_"
     },
     {
       "label": "note",
-      "url": "https://note.com/hiromi381",
-      "emoji": "🗒️"
+      "url": "https://note.com/hiromi381"
     },
     {
       "label": "Suno",
-      "url": "https://suno.com/@rarereverberations0740",
-      "emoji": "🎵"
+      "url": "https://suno.com/@rarereverberations0740"
+    }
+  ],
+  "links": [
+    {
+      "label": "Instagram",
+      "split": [
+        {
+          "label": "Snap",
+          "url": "https://instagram.com/hiromi.suzuki_"
+        },
+        {
+          "label": "Life",
+          "url": "https://www.instagram.com/shiromi_09"
+        }
+      ]
     }
   ]
 }

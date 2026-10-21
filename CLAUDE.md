@@ -5,76 +5,51 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal linktree-style website for Hiromi Suzuki featuring two versions (V1 and V2) of the same design. The project is a static website that dynamically loads profile information and social links from a JSON configuration file.
+Personal linktree-style website for Hiromi Suzuki. A static site (no build process, no dependencies) that loads profile information and links from `links.json`. Hosted on Cloudflare Workers (Static Assets), deployed directly from the local folder with `wrangler`.
 
 ## Architecture
 
-The project consists of two parallel implementations in separate directories:
+All files live at the repository root:
 
-- **V1/**: Complete linktree implementation with animated gradient background and floating circles
-- **V2/**: Identical copy of V1 implementation
-
-Each version contains:
-
-- `index.html`: Main HTML structure with header, links container, and footer
-- `script.js`: JavaScript that fetches `links.json` and dynamically generates link buttons
-- `style.css`: CSS with CSS custom properties for theming, animated backgrounds, and responsive design
-- `links.json`: Configuration file containing profile data and social media links
-- `avatar.JPG`: Profile image
+- `index.html`: Header (avatar, title, bio, icon row), links container, footer
+- `script.js`: Fetches `links.json` and generates the icon row and link buttons
+- `style.css`: Light-only theme built on CSS custom properties
+- `links.json`: Profile data and links
+- `avatar.jpg`: Profile image
+- `icons/*.svg`: Brand icons, applied via CSS `mask`
+- `wrangler.jsonc`: Cloudflare Workers config (assets-only, no Worker script)
+- `.assetsignore`: Files excluded from deployment (`.git`, `log`, `CLAUDE.md`, etc.)
 
 ## Key Technical Details
 
 ### Dynamic Content Loading
 
-- Profile information (avatar, title, bio) and links are loaded from `links.json`
-- Link buttons are dynamically generated with emoji support
-- Footer automatically displays current year
+- `iconLinks` render as round icon-only links under the bio
+- `links` render as labeled buttons; an entry with `split` renders one card holding several links
+- Icons are chosen by URL hostname (`BRAND_ICONS` in `script.js`); unknown hosts fall back to `emoji` or the label
+- Footer displays the current year
 
-### Styling System
+### Security
 
-- Uses CSS custom properties for light/dark theme support via `prefers-color-scheme`
-- Animated gradient background with `background-position` animation
-- Floating circles animation with staggered timing
-- Responsive design with mobile-first approach
-
-### Security Features
-
-- External links use `target="_blank"` with `rel="noopener"` for security
-- No build process or dependencies - pure vanilla HTML/CSS/JS
+- External links use `target="_blank"` with `rel="noopener"`
 
 ## Development Commands
 
-This is a static website with no build process. To work with the project:
+- Local preview: `npx wrangler dev` (http://localhost:8787), or any static server (`python -m http.server`)
+- First deploy: `npx wrangler login`, then `npx wrangler deploy`
+- Update: edit files, then `npx wrangler deploy`
 
-- Open `index.html` directly in a browser, or
-- Serve locally with any static file server (e.g., `python -m http.server` or `npx serve`)
-
-## File Structure
-
-```
-V1/                    # Version 1 implementation
-├── index.html         # Main HTML file
-├── script.js          # JavaScript for dynamic content
-├── style.css          # Styles with animations and theming
-├── links.json         # Profile and links configuration
-└── avatar.JPG         # Profile image
-
-V2/                    # Version 2 implementation (identical to V1)
-├── index.html
-├── script.js
-├── style.css
-├── links.json
-└── avatar.JPG
-```
+When adding a file that must not be public, add it to `.assetsignore`.
 
 ## Configuration
 
-To modify the website content, edit the `links.json` file in the respective version directory. The JSON structure includes:
+Edit `links.json`:
 
 - `avatar`: Path to profile image
 - `title`: Display name
 - `bio`: Brief description
-- `links`: Array of social media links with label, URL, and emoji
+- `iconLinks`: Array of `{ label, url }` shown as icons
+- `links`: Array of `{ label, url, emoji? }` or `{ label, split: [{ label, url }] }`
 
 ## 作業ログ
 

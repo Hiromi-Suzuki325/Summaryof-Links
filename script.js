@@ -1,5 +1,6 @@
 async function init() {
   const res = await fetch("links.json", { cache: "no-store" });
+  if (!res.ok) throw new Error(`links.json の取得に失敗: HTTP ${res.status}`);
   const data = await res.json();
 
   // プロフィール部分
@@ -50,6 +51,10 @@ async function init() {
   const container = document.getElementById("links");
   (data.links || []).forEach(({ label, url, emoji, split }) => {
     if (split) {
+      // 1件だけの split は設定ミスとして止める
+      if (split.length < 2) {
+        throw new Error(`"${label}" の split には2件以上のリンクが必要です`);
+      }
       const card = document.createElement("div");
       card.className = "link-btn split";
       const slug = slugFor(split[0].url);
@@ -99,4 +104,19 @@ async function init() {
   document.getElementById("year").textContent = new Date().getFullYear();
 }
 
-document.addEventListener("DOMContentLoaded", init);
+// 読み込みや描画に失敗したら、空の画面ではなく失敗したことを表示する
+function showLoadError() {
+  const message = document.createElement("p");
+  message.className = "load-error";
+  message.setAttribute("role", "alert");
+  message.textContent =
+    "リンクを読み込めませんでした。時間をおいて再読み込みしてください。";
+  document.getElementById("links").replaceChildren(message);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  init().catch((error) => {
+    showLoadError();
+    throw error;
+  });
+});

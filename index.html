@@ -5,14 +5,26 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="only light" />
     <title>Hiromi’s LinkHub</title>
-    <link rel="stylesheet" href="style.css?v=5" />
+    <meta name="description" content="Hiromi のリンク集。写真とかコーヒーとか。" />
+
+    <!-- SNS で共有したときの表示（og:image は絶対 URL が必要） -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://summaryof-links.shiromi.workers.dev/" />
+    <meta property="og:title" content="Hiromi’s LinkHub" />
+    <meta property="og:description" content="Hiromi のリンク集。写真とかコーヒーとか。" />
+    <meta property="og:image" content="https://summaryof-links.shiromi.workers.dev/avatar.jpg" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
       <img id="avatar" src="avatar.jpg" alt="Avatar" />
       <h1 id="title"></h1>
       <p id="bio"></p>
-      <nav id="icon-links" aria-label="SNS"></nav>
+      <nav id="icon-links" aria-label="SNSリンク"></nav>
     </header>
 
     <main id="links"><!-- ここに JS がボタンを挿入 --></main>
@@ -21,6 +33,6 @@
       <small>&copy; <span id="year"></span> Hiromi</small>
     </footer>
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js"></script>
   </body>
 </html>

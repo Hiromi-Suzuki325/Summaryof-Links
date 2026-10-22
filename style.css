@@ -236,6 +236,16 @@ header {
   line-height: 1;
 }
 
+.load-error {
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 footer {
   margin-top: 3rem;
   padding-bottom: 2rem;

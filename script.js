@@ -49,7 +49,25 @@ async function init() {
 
   // ラベル付きボタン（split指定なら1カード内に複数リンク）
   const container = document.getElementById("links");
-  (data.links || []).forEach(({ label, url, emoji, split }) => {
+  (data.links || []).forEach((item) => {
+    const { label, url, emoji, split, heading, description, icon, previews } =
+      item;
+
+    // 歩くアヒル（duck.js が描画済み）をこの位置へ移す
+    if (item.duck) {
+      container.appendChild(document.getElementById("duck-stage"));
+      return;
+    }
+
+    // 区切りの見出し（例：「つくったもの」）
+    if (heading) {
+      const h2 = document.createElement("h2");
+      h2.className = "section-heading";
+      h2.textContent = heading;
+      container.appendChild(h2);
+      return;
+    }
+
     if (split) {
       // 1件だけの split は設定ミスとして止める
       if (split.length < 2) {
@@ -81,10 +99,11 @@ async function init() {
 
     const a = document.createElement("a");
     a.href = url;
-    a.className = "link-btn";
+    a.className = description ? "link-btn has-description" : "link-btn";
     a.target = "_blank";
     a.rel = "noopener";
-    const slug = slugFor(url);
+    // icon 指定（icons/<icon>.svg）があればドメインより優先する
+    const slug = icon || slugFor(url);
     if (slug) {
       a.appendChild(makeIcon(slug));
     } else if (emoji) {
@@ -97,6 +116,27 @@ async function init() {
     text.className = "label";
     text.textContent = label;
     a.appendChild(text);
+    if (description) {
+      const sub = document.createElement("span");
+      sub.className = "description";
+      sub.textContent = description;
+      a.appendChild(sub);
+    }
+    // 中身が伝わるよう、カードの下に見本画像を並べる
+    if (previews) {
+      a.classList.add("has-previews");
+      const row = document.createElement("span");
+      row.className = "previews";
+      row.style.setProperty("--cols", previews.length);
+      previews.forEach(({ src, alt }) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = alt;
+        img.loading = "lazy";
+        row.appendChild(img);
+      });
+      a.appendChild(row);
+    }
     container.appendChild(a);
   });
 

@@ -228,12 +228,87 @@ header {
   background-color: var(--accent);
 }
 
+/* 説明つきカード：ラベルの下に小さく説明を添える */
+.link-btn.has-description {
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.link-btn .description {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* 見本画像つきカード：画像はカードの端近くまで広げ、アイコンはラベルの高さに揃える */
+.link-btn.has-previews .icon {
+  top: 1.05rem;
+}
+
+.link-btn .previews {
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 0.4rem;
+  margin: 0.6rem -1.9rem 0;
+}
+
+.link-btn .previews img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+/* 区切り見出し：左右に細い線を引いた小さな見出し */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.2rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--border);
+}
+
 /* fallback when the link has no known brand icon */
 .link-btn .icon-emoji {
   position: absolute;
   left: 1.1rem;
   font-size: 1.05rem;
   line-height: 1;
+}
+
+/* リンクの下をアヒルが歩くステージ */
+#duck-stage {
+  max-width: 480px;
+  margin: 1.6rem auto 0;
+  padding: 0 1.2rem;
+}
+
+/* links.json の指定でリンク列の中に移したときは、列の幅と余白に合わせる */
+#links #duck-stage {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+#duck-stage canvas {
+  display: block;
+  image-rendering: pixelated;
 }
 
 .load-error {

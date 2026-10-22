@@ -33,6 +33,35 @@
           "url": "https://www.instagram.com/shiromi_09"
         }
       ]
+    },
+    {
+      "duck": true
+    },
+    {
+      "heading": "つくったもの"
+    },
+    {
+      "label": "ロックなアヒルGhaa",
+      "description": "LINEスタンプ",
+      "url": "https://store.line.me/stickershop/product/34000060",
+      "icon": "ghaa",
+      "previews": [
+        { "src": "images/ghaa-yoroshiku.webp", "alt": "よろしく" },
+        { "src": "images/ghaa-iine.webp", "alt": "いいね" },
+        { "src": "images/ghaa-kyukei.webp", "alt": "休憩" },
+        { "src": "images/ghaa-nemasu.webp", "alt": "ねます" }
+      ]
+    },
+    {
+      "label": "トイレ探すんです",
+      "description": "近くのアクセシブルトイレを地図で探せる",
+      "url": "https://toilet-search.pages.dev/",
+      "icon": "toilet",
+      "previews": [
+        { "src": "images/toilet-map.webp", "alt": "地図に近くのトイレが表示された画面" },
+        { "src": "images/toilet-list.webp", "alt": "トイレを距離順に並べた一覧画面" },
+        { "src": "images/toilet-detail.webp", "alt": "設備と写真が見られる詳細画面" }
+      ]
     }
   ]
 }

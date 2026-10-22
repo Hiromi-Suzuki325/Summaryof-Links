@@ -13,6 +13,7 @@ All files live at the repository root:
 
 - `index.html`: Header (avatar, title, bio, icon row), links container, footer
 - `script.js`: Fetches `links.json` and generates the icon row and link buttons
+- `duck.js`: Pixel-art duck in a leather jacket on a canvas below the links (`#duck-stage`). The sprite is character rows in `BODY` / `FEET`, with row overrides for eyes and raised wings (`EYES`, `WINGS_UP`). It picks a random action from `ACTIONS` (walk, run, idle look-around, quack bubble, hop, flap; `weight` sets frequency), blinks now and then, and hops and quacks when tapped. It stands still under `prefers-reduced-motion`
 - `style.css`: Light-only theme built on CSS custom properties
 - `links.json`: Profile data and links
 - `avatar.jpg`: Profile image (also used as `og:image`)
@@ -56,7 +57,12 @@ Edit `links.json`:
 - `title`: Display name
 - `bio`: Brief description
 - `iconLinks`: Array of `{ label, url }` shown as icons
-- `links`: Array of `{ label, url, emoji? }` or `{ label, split: [{ label, url }] }`
+- `links`: Array of entries, rendered in order:
+  - `{ label, url, description?, icon?, emoji?, previews? }`: a button; `description` adds a small second line, `icon` picks `icons/<icon>.svg` over the hostname match, `previews: [{ src, alt }]` shows sample images in one row inside the card (columns = number of images; keep images in one entry the same aspect ratio). `images/ghaa-*.webp` are 200px squares cropped from the sticker list; `images/toilet-*.webp` are 300x400 crops of the app's map / list / detail screens, shot with headless Chrome over CDP at 390x844 mobile size
+  - `{ label, split: [{ label, url }] }`: one card holding several links
+  - `{ heading }`: a small section heading with lines on both sides (e.g. 「つくったもの」)
+  - `{ duck: true }`: moves the walking duck (`#duck-stage`) to this position; without it the duck stays below `#links`. `duck.js` tracks the stage width with a `ResizeObserver`, so it follows the move
+- Custom icons: `icons/ghaa.svg` (line-art duck for the Ghaa LINE stickers), `icons/toilet.svg` (wheelchair pictogram for トイレ探すんです). Draw them as single-color SVG; color comes from the CSS mask
 
 ## 作業ログ
 
